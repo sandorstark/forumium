@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Forum</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons for UI elements -->
+    <script src="https://unpkg.com/lucide-react@0.292.0/dist/lucide-react.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #111827; /* bg-gray-900 */
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-300">
+
+    <div class="container mx-auto p-4 md:p-6 lg:p-8">
+        <!-- Header Section -->
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-6 pb-4 border-b border-gray-700">
+            <h1 class="text-3xl font-bold text-white mb-4 sm:mb-0">
+                <a href="#" class="hover:text-blue-400 transition-colors">Gemini Forum</a>
+            </h1>
+            <nav class="flex items-center space-x-4">
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Forums</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Members</a>
+                <div class="relative">
+                    <input type="text" placeholder="Search..." class="bg-gray-800 border border-gray-700 rounded-full py-2 px-4 pl-10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto">
+                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <!-- Guest Profile Icon Button -->
+                <button id="profileBtn" class="w-10 h-10 rounded-full border-2 border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-blue-500 transition-colors focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Category Header -->
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h2 class="text-2xl font-semibold text-white">General Discussion</h2>
+                    <p class="text-gray-400">Talk about anything and everything.</p>
+                </div>
+                <button id="newPostBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors flex items-center space-x-2">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m-7-7h14"/></svg>
+                    <span>New Post</span>
+                </button>
+            </div>
+
+            <!-- Forum Threads List -->
+            <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                <!-- Table Header -->
+                <div class="hidden md:grid grid-cols-12 gap-4 p-4 font-bold text-gray-400 border-b border-gray-700">
+                    <div class="col-span-6">Thread / Author</div>
+                    <div class="col-span-2 text-center">Replies</div>
+                    <div class="col-span-1 text-center">Views</div>
+                    <div class="col-span-3">Last Post</div>
+                </div>
+
+                <!-- Thread Item 1 -->
+                <div class="grid grid-cols-12 gap-4 p-4 items-center border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
+                    <!-- Thread Title & Author (Responsive Layout) -->
+                    <div class="col-span-12 md:col-span-6 flex items-center">
+                        <img src="https://placehold.co/48x48/718096/E2E8F0?text=A" alt="Author Avatar" class="w-12 h-12 rounded-full mr-4 hidden sm:block">
+                        <div>
+                            <a href="#" class="font-semibold text-lg text-white hover:text-blue-400 transition-colors">Welcome to the new Gemini Forum!</a>
+                            <p class="text-sm text-gray-400">by <a href="#" class="text-blue-400 hover:underline">Admin</a></p>
+                        </div>
+                    </div>
+                    <!-- Stats -->
+                    <div class="col-span-4 md:col-span-2 text-center">
+                        <span class="md:hidden text-gray-400 text-sm">Replies: </span>
+                        <span class="font-medium text-white">1,204</span>
+                    </div>
+                    <div class="col-span-4 md:col-span-1 text-center">
+                        <span class="md:hidden text-gray-400 text-sm">Views: </span>
+                        <span class="font-medium text-white">15.7k</span>
+                    </div>
+                    <!-- Last Post Info -->
+                    <div class="col-span-12 md:col-span-3 mt-2 md:mt-0 flex items-center">
+                         <img src="https://placehold.co/32x32/A0AEC0/1A202C?text=S" alt="Last Poster Avatar" class="w-8 h-8 rounded-full mr-3 hidden sm:block">
+                        <div>
+                            <a href="#" class="text-blue-400 hover:underline">Sarah</a>
+                            <p class="text-sm text-gray-500">Today at 10:15 AM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thread Item 2 -->
+                <div class="grid grid-cols-12 gap-4 p-4 items-center border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
+                    <div class="col-span-12 md:col-span-6 flex items-center">
+                        <img src="https://placehold.co/48x48/4A5568/E2E8F0?text=B" alt="Author Avatar" class="w-12 h-12 rounded-full mr-4 hidden sm:block">
+                        <div>
+                            <a href="#" class="font-semibold text-lg text-white hover:text-blue-400 transition-colors">What are your favorite web dev tools?</a>
+                            <p class="text-sm text-gray-400">by <a href="#" class="text-blue-400 hover:underline">BenCode</a></p>
+                        </div>
+                    </div>
+                    <div class="col-span-4 md:col-span-2 text-center"><span class="md:hidden text-gray-400 text-sm">Replies: </span><span class="font-medium text-white">88</span></div>
+                    <div class="col-span-4 md:col-span-1 text-center"><span class="md:hidden text-gray-400 text-sm">Views: </span><span class="font-medium text-white">2.1k</span></div>
+                    <div class="col-span-12 md:col-span-3 mt-2 md:mt-0 flex items-center">
+                         <img src="https://placehold.co/32x32/CBD5E0/1A202C?text=M" alt="Last Poster Avatar" class="w-8 h-8 rounded-full mr-3 hidden sm:block">
+                        <div>
+                            <a href="#" class="text-blue-400 hover:underline">Mike</a>
+                            <p class="text-sm text-gray-500">Yesterday at 3:45 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thread Item 3 -->
+                <div class="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-700/50 transition-colors">
+                    <div class="col-span-12 md:col-span-6 flex items-center">
+                        <img src="https://placehold.co/48x48/9F7AEA/E2E8F0?text=C" alt="Author Avatar" class="w-12 h-12 rounded-full mr-4 hidden sm:block">
+                        <div>
+                            <a href="#" class="font-semibold text-lg text-white hover:text-blue-400 transition-colors">Project Showcase: My new portfolio</a>
+                            <p class="text-sm text-gray-400">by <a href="#" class="text-blue-400 hover:underline">ChloeDesign</a></p>
+                        </div>
+                    </div>
+                    <div class="col-span-4 md:col-span-2 text-center"><span class="md:hidden text-gray-400 text-sm">Replies: </span><span class="font-medium text-white">15</span></div>
+                    <div class="col-span-4 md:col-span-1 text-center"><span class="md:hidden text-gray-400 text-sm">Views: </span><span class="font-medium text-white">980</span></div>
+                    <div class="col-span-12 md:col-span-3 mt-2 md:mt-0 flex items-center">
+                         <img src="https://placehold.co/32x32/FBBF24/1A202C?text=D" alt="Last Poster Avatar" class="w-8 h-8 rounded-full mr-3 hidden sm:block">
+                        <div>
+                            <a href="#" class="text-blue-400 hover:underline">David</a>
+                            <p class="text-sm text-gray-500">3 days ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-between items-center mt-6">
+                <span class="text-gray-400">Page 1 of 25</span>
+                <div class="flex space-x-1">
+                    <a href="#" class="py-2 px-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors">&laquo;</a>
+                    <a href="#" class="py-2 px-3 bg-blue-600 text-white rounded-md">1</a>
+                    <a href="#" class="py-2 px-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors">2</a>
+                    <a href="#" class="py-2 px-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors">3</a>
+                    <span class="py-2 px-3 text-white">...</span>
+                    <a href="#" class="py-2 px-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors">25</a>
+                    <a href="#" class="py-2 px-3 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition-colors">&raquo;</a>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-10 pt-6 border-t border-gray-700 text-gray-500">
+            <p>&copy; 2025 Gemini Forum. All rights reserved.</p>
+            <div class="mt-2 space-x-4">
+                <a href="#" class="hover:underline">About</a>
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <a href="#" class="hover:underline">Contact</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- New Post Modal -->
+    <div id="newPostModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl transform transition-all" id="modalContent">
+            <div class="p-6 border-b border-gray-700 flex justify-between items-center">
+                <h3 class="text-2xl font-semibold text-white">Create a New Post</h3>
+                <button id="closeModalBtn" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <form class="p-6 space-y-4">
+                <div>
+                    <label for="postTitle" class="block text-sm font-medium text-gray-300 mb-1">Title</label>
+                    <input type="text" id="postTitle" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter a descriptive title...">
+                </div>
+                <div>
+                    <label for="postContent" class="block text-sm font-medium text-gray-300 mb-1">Content</label>
+                    <textarea id="postContent" rows="8" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="What's on your mind?"></textarea>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition-colors" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Submit Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-gray-800 rounded-lg shadow-xl w-full max-w-md transform transition-all" id="signupModalContent">
+            <div class="p-6 border-b border-gray-700 flex justify-between items-center">
+                <h3 class="text-2xl font-semibold text-white">Join the Forum</h3>
+                <button id="closeSignupModalBtn" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <form class="p-6 space-y-4">
+                <div>
+                    <label for="emailAddress" class="block text-sm font-medium text-gray-300 mb-1">Email Address</label>
+                    <input type="email" id="emailAddress" class="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="you@example.com" required>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition-colors" id="cancelSignupBtn">Cancel</button>
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Modal Interaction Logic ---
+        const newPostBtn = document.getElementById('newPostBtn');
+        const newPostModal = document.getElementById('newPostModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const modalContent = document.getElementById('modalContent');
+
+        function openModal() {
+            newPostModal.classList.remove('hidden');
+            // Add a small animation on open
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+            }, 10); // Start animation after a tick
+        }
+
+        function closeModal() {
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                newPostModal.classList.add('hidden');
+            }, 200); // Wait for animation to finish
+        }
+
+        newPostBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        cancelBtn.addEventListener('click', closeModal);
+
+        // Close modal if user clicks outside of it
+        newPostModal.addEventListener('click', (event) => {
+            if (event.target === newPostModal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !newPostModal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // --- Signup Modal Logic ---
+        const profileBtn = document.getElementById('profileBtn');
+        const signupModal = document.getElementById('signupModal');
+        const closeSignupModalBtn = document.getElementById('closeSignupModalBtn');
+        const cancelSignupBtn = document.getElementById('cancelSignupBtn');
+        const signupModalContent = document.getElementById('signupModalContent');
+
+        function openSignupModal() {
+            signupModal.classList.remove('hidden');
+            signupModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                signupModalContent.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        }
+
+        function closeSignupModal() {
+            signupModalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                signupModal.classList.add('hidden');
+            }, 200);
+        }
+
+        profileBtn.addEventListener('click', openSignupModal);
+        closeSignupModalBtn.addEventListener('click', closeSignupModal);
+        cancelSignupBtn.addEventListener('click', closeSignupModal);
+
+        signupModal.addEventListener('click', (event) => {
+            if (event.target === signupModal) {
+                closeSignupModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !signupModal.classList.contains('hidden')) {
+                closeSignupModal();
+            }
+        });
+    </script>
+</body>
+</html>
+
